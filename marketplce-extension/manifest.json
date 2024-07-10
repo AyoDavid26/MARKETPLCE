@@ -17,27 +17,26 @@
       }
     },
     "permissions": [
-    "webNavigation",
-    "scripting",
-    "activeTab"
+      "webNavigation",
+      "scripting",
+      "activeTab"
     ],
     "host_permissions": [
-        "*://*/*"
+      "*://*/*"
     ],
     "content_scripts": [
-        {
+      {
         "matches": [
           "https://www.amazon.com/*",
           "https://www.ebay.com/*",
           "https://www.walmart.com/*",
           "https://www.shopify.com/*",
           "https://www.alibaba.com/*"
-    ],
+        ],
         "js": ["content.js"]
-        }
+      }
     ],
     "background": {
       "service_worker": "background.js"
     }
-  }
-  
+}

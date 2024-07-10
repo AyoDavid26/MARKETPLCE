@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Marketplce Price Comparison</title>
-  <link rel="stylesheet" href="popup.css">
+  <title>THE MARKETPLCE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 300px;
+    }
+    .container {
+      padding: 10px;
+    }
+    .header {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Marketplce</h1>
-  <input type="text" id="searchQuery" placeholder="Search for products...">
-  <button id="searchButton">Search</button>
-  <div id="results"></div>
+  <div class="container">
+    <div class="header">THE MARKETPLCE</div>
+    <button id="compare-prices">Compare Prices</button>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

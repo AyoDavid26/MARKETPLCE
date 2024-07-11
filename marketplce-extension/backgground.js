@@ -1,4 +1,1 @@
-chrome.runtime.onInstalled.addListener(() => {
-    console.log('THE MARKETPLCE extension installed.');
-  });
-  
+console.log('Background script loaded.');

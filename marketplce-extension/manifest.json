@@ -1,42 +1,46 @@
 {
-  "manifest_version": 2,
-  "name": "Marketplce Price Comparator",
-  "version": "1.0",
-  "description": "A Chrome extension to compare prices across multiple online marketplaces.",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "tabs",
-    "https://*/",
-    "http://*/"
-  ],
-  "background": {
-    "scripts": ["static/background.js"],
-    "persistent": false
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*.ebay.com/*",
-        "https://*.amazon.com/*",
-        "https://*.google.com/*",
-        "https://*.shopify.com/*",
-        "https://*.alibaba.com/*"
-      ],
-      "js": ["content.js"]
-    }
-  ],
-  "browser_action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    }
-  },
-  "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  }
+	"manifest_version": 2,
+	"name": "Marketplce Price Comparator",
+	"version": "1.0",
+	"description": "A Chrome extension to compare prices across multiple online marketplaces.",
+	"permissions": [
+		"activeTab",
+		"storage",
+		"tabs",
+		"https://*/",
+		"http://*/"
+	],
+	"background": {
+		"scripts": [
+			"static/background.js"
+		],
+		"persistent": false
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://*.ebay.com/*",
+				"https://*.amazon.com/*",
+				"https://*.google.com/*",
+				"https://*.shopify.com/*",
+				"https://*.alibaba.com/*"
+			],
+			"js": [
+				"content.js"
+			]
+		}
+	],
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_icon": {
+			"16": "images/icon16.png",
+			"48": "images/icon48.png",
+			"128": "images/icon128.png"
+		}
+	},
+	"icons": {
+		"16": "images/icon16.png",
+		"48": "images/icon48.png",
+		"128": "images/icon128.png"
+	}
 }

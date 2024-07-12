@@ -1,42 +1,45 @@
 {
-    "manifest_version": 3,
-    "name": "Marketplce Price Comparison",
-    "version": "1.0",
-    "description": "Compare prices across various platforms seamlessly.",
-    "icons": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    },
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-      }
-    },
-    "permissions": [
-      "webNavigation",
-      "scripting",
-      "activeTab"
-    ],
-    "host_permissions": [
-      "*://*/*"
-    ],
-    "content_scripts": [
-      {
-        "matches": [
-          "https://www.amazon.com/*",
-          "https://www.ebay.com/*",
-          "https://www.walmart.com/*",
-          "https://www.shopify.com/*",
-          "https://www.alibaba.com/*"
-        ],
-        "js": ["content.js"]
-      }
-    ],
-    "background": {
-      "service_worker": "background.js"
+  "manifest_version": 3,
+  "name": "Marketplce",
+  "version": "1.0",
+  "description": "Compare prices across various online marketplaces seamlessly.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "https://*.amazon.com/*",
+    "https://*.ebay.com/*",
+    "https://*.google.com/*",
+    "https://*.shopify.com/*",
+    "https://*.alibaba.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.amazon.com/*",
+        "https://*.ebay.com/*",
+        "https://*.google.com/*",
+        "https://*.shopify.com/*",
+        "https://*.alibaba.com/*"
+      ],
+      "js": ["content.js"]
     }
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
 }

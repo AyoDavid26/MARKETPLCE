@@ -1,36 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('.search-button').addEventListener('click', function() {
-      searchProducts();
-  });
+document.addEventListener('DOMContentLoaded', function () {
+  const searchButton = document.getElementById('searchButton');
+  const searchInput = document.getElementById('searchQuery');
+  const resultsDiv = document.getElementById('results');
 
-  function searchProducts() {
-      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-          chrome.tabs.sendMessage(tabs[0].id, { action: "getSearchTerm" }, function(response) {
-              if (response && response.status === "success") {
-                  const searchTerm = response.data.searchTerm;
-                  fetchPrices(searchTerm);
-              } else {
-                  console.error(response.message);
-              }
-          });
-      });
-  }
-
-  function fetchPrices(searchTerm) {
-      chrome.runtime.sendMessage({ action: "fetchPrices", searchTerm }, function(response) {
-          if (response && response.status === "success") {
-              displayPrices(response.prices);
+  if (searchButton && searchInput) {
+      searchButton.addEventListener('click', function () {
+          const searchTerm = searchInput.value.trim();
+          if (searchTerm) {
+              fetch('http://127.0.0.1:5000/scrape', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ searchTerm: searchTerm })
+              })
+              .then(response => response.json())
+              .then(data => {
+                  resultsDiv.innerHTML = '';  // Clear previous results
+                  if (data.prices && data.prices.length > 0) {
+                      data.prices.forEach(price => {
+                          const resultItem = document.createElement('div');
+                          resultItem.textContent = `${price.marketplace}: ${price.price}`;
+                          resultsDiv.appendChild(resultItem);
+                      });
+                  } else {
+                      resultsDiv.textContent = 'No prices found.';
+                  }
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  resultsDiv.textContent = 'Error fetching prices.';
+              });
+          } else {
+              console.error('Search input is empty.');
+              resultsDiv.textContent = 'Please enter a search term.';
           }
       });
-  }
-
-  function displayPrices(prices) {
-      const content = document.getElementById('content');
-      content.innerHTML = '';
-      prices.forEach(price => {
-          const div = document.createElement('div');
-          div.textContent = `${price.marketplace}: ${price.price}`;
-          content.appendChild(div);
-      });
+  } else {
+      console.error('Search button or input not found on the page.');
   }
 });

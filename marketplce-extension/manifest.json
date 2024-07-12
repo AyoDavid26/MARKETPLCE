@@ -23,7 +23,8 @@
 				"https://*.amazon.com/*",
 				"https://*.google.com/*",
 				"https://*.shopify.com/*",
-				"https://*.alibaba.com/*"
+				"https://*.alibaba.com/*",
+        "https://*.walmart.com/*"
 			],
 			"js": [
 				"content.js"
